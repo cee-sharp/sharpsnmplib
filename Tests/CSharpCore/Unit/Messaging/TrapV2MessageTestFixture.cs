@@ -1,10 +1,10 @@
 ﻿#pragma warning disable CS0618 // Type or member is obsolete
-namespace Lextm.SharpSnmpLib.Unit.Messaging
+namespace CeeSharp.SnmpLib.Unit.Messaging
 {
     using System.Collections.Generic;
     using Xunit;
-    using Lextm.SharpSnmpLib.Messaging;
-    using Lextm.SharpSnmpLib.Security;
+    using CeeSharp.SnmpLib.Messaging;
+    using CeeSharp.SnmpLib.Security;
     using System.IO;
 
     public class TrapV2MessageTestFixture
@@ -54,10 +54,6 @@ namespace Lextm.SharpSnmpLib.Unit.Messaging
         [Fact]
         public void TestToBytes3()
         {
-            if (!DESPrivacyProvider.IsSupported)
-            {
-                return;
-            }
 
             var privacy = new DESPrivacyProvider(new OctetString("privacyphrase"), new MD5AuthenticationProvider(new OctetString("authentication")));
             var trap = new TrapV2Message(
@@ -84,7 +80,7 @@ namespace Lextm.SharpSnmpLib.Unit.Messaging
             byte[] bytes = trap.ToBytes();
             UserRegistry registry = new UserRegistry();
             registry.Add(new OctetString("lextm"), privacy);
-            IList<ISnmpMessage> messages = MessageFactory.ParseMessages(bytes, registry);
+            IList<ISnmpMessage> messages = MessageFactory.ParseMessages(bytes, registry, false);
             Assert.Equal(1, messages.Count);
             ISnmpMessage message = messages[0];
             Assert.Equal("80001F8880E9630000D61FF449", message.Parameters.EngineId.ToHexString());

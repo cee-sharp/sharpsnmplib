@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Net;
-using Lextm.SharpSnmpLib.Messaging;
-using Lextm.SharpSnmpLib.Security;
+using CeeSharp.SnmpLib.Messaging;
+using CeeSharp.SnmpLib.Security;
 using Xunit;
 using System.IO;
 
-namespace Lextm.SharpSnmpLib.Unit.Messaging
+namespace CeeSharp.SnmpLib.Unit.Messaging
 {
     public class TrapV1MessageTestFixture
     {
@@ -21,7 +21,7 @@ namespace Lextm.SharpSnmpLib.Unit.Messaging
                                                       0,
                                                       new List<Variable>());
             byte[] bytes = message.ToBytes();
-            ISnmpMessage parsed = MessageFactory.ParseMessages(bytes, new UserRegistry())[0];
+            ISnmpMessage parsed = MessageFactory.ParseMessages(bytes, new UserRegistry(), false)[0];
             Assert.Equal(SnmpType.TrapV1Pdu, parsed.TypeCode());
             TrapV1Message m = (TrapV1Message)parsed;
             Assert.Equal(GenericCode.AuthenticationFailure, m.Generic);
@@ -37,7 +37,7 @@ namespace Lextm.SharpSnmpLib.Unit.Messaging
         public void TestParseNoVarbind()
         {
             byte[] buffer = File.ReadAllBytes(Path.Combine("Resources", "novarbind.dat"));
-            ISnmpMessage m = MessageFactory.ParseMessages(buffer, new UserRegistry())[0];
+            ISnmpMessage m = MessageFactory.ParseMessages(buffer, new UserRegistry(), false)[0];
             TrapV1Message message = (TrapV1Message)m;
             Assert.Equal(GenericCode.EnterpriseSpecific, message.Generic);
             Assert.Equal(12, message.Specific);
@@ -52,7 +52,7 @@ namespace Lextm.SharpSnmpLib.Unit.Messaging
         public void TestParseOneVarbind()
         {
             byte[] buffer = File.ReadAllBytes(Path.Combine("Resources", "onevarbind.dat"));
-            TrapV1Message message = (TrapV1Message)MessageFactory.ParseMessages(buffer, new UserRegistry())[0];
+            TrapV1Message message = (TrapV1Message)MessageFactory.ParseMessages(buffer, new UserRegistry(), false)[0];
             Assert.Equal(1, message.Variables().Count);
             Assert.Equal(new uint[] { 1, 3, 6, 1, 4, 1, 2162, 1000, 2 }, message.Enterprise.ToNumerical());
             Assert.Equal("TrapTest", message.Variables()[0].Data.ToString());
@@ -63,7 +63,7 @@ namespace Lextm.SharpSnmpLib.Unit.Messaging
         public void TestParseTwoVarbinds()
         {
             byte[] buffer = File.ReadAllBytes(Path.Combine("Resources", "twovarbinds.dat"));
-            TrapV1Message message = (TrapV1Message)MessageFactory.ParseMessages(buffer, new UserRegistry())[0];
+            TrapV1Message message = (TrapV1Message)MessageFactory.ParseMessages(buffer, new UserRegistry(), false)[0];
             Assert.Equal(2, message.Variables().Count);
             Assert.Equal("TrapTest", message.Variables()[0].Data.ToString());
             Assert.Equal(new uint[] {1,3,6,1,4,1,2162,1001,21,0}, message.Variables()[0].Id.ToNumerical());

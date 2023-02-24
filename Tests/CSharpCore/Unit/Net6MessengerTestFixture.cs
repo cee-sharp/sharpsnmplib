@@ -4,11 +4,11 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
-using Lextm.SharpSnmpLib.Messaging;
+using CeeSharp.SnmpLib.Messaging;
 using Xunit;
 
 #pragma warning disable 1591
-namespace Lextm.SharpSnmpLib.Unit
+namespace CeeSharp.SnmpLib.Unit
 {
     public class Net6MessengerTestFixture
     {

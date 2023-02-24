@@ -13,7 +13,7 @@ using System.Text;
 using Xunit;
 
 #pragma warning disable 1591, 0618, 1718
-namespace Lextm.SharpSnmpLib.Unit
+namespace CeeSharp.SnmpLib.Unit
 {
     public class OctetStringTestFixture
     {
@@ -38,7 +38,7 @@ namespace Lextm.SharpSnmpLib.Unit
         public void TestMethod()
         {
             byte[] expected = new byte[] {0x04, 0x06, 0x70, 0x75, 0x62, 0x6C, 0x69, 0x63};
-            ISnmpData data = DataFactory.CreateSnmpData(expected);
+            ISnmpData data = DataFactory.CreateSnmpData(expected, false);
             Assert.Equal(SnmpType.OctetString, data.TypeCode);
             OctetString s = (OctetString)data;
             Assert.Equal("public", s.ToString());

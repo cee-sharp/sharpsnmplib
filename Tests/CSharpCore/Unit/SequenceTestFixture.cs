@@ -11,7 +11,7 @@ using System;
 using System.Collections.Generic;
 using Xunit;
 
-namespace Lextm.SharpSnmpLib.Unit
+namespace CeeSharp.SnmpLib.Unit
 {
     public class SequenceTestFixture
     {
@@ -38,7 +38,7 @@ namespace Lextm.SharpSnmpLib.Unit
             Assert.Throws<ArgumentNullException>(() => a.AppendBytesTo(null));
             Assert.Equal("SNMP SEQUENCE: SNMP SEQUENCE: 1.3.6.1.4.1.2162.1001.21.0; TrapTest; ; ", a.ToString());
             byte[] bytes = a.ToBytes();
-            ISnmpData data = DataFactory.CreateSnmpData(bytes);
+            ISnmpData data = DataFactory.CreateSnmpData(bytes, false);
             Assert.Equal(SnmpType.Sequence, data.TypeCode);
             Sequence array = (Sequence)data;
             Assert.Equal(1, array.Length);

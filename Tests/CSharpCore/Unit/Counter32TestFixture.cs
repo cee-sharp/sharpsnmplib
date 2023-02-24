@@ -3,7 +3,7 @@ using System.IO;
 using Xunit;
 
 #pragma warning disable 1591,0618, 1718
-namespace Lextm.SharpSnmpLib.Unit
+namespace CeeSharp.SnmpLib.Unit
 {
     public class Counter32TestFixture
     {
@@ -104,27 +104,27 @@ namespace Lextm.SharpSnmpLib.Unit
         public void TestToBytes()
         {
             Counter32 c0 = new Counter32(0);
-            Counter32 r0 = (Counter32)DataFactory.CreateSnmpData(c0.ToBytes());
+            Counter32 r0 = (Counter32)DataFactory.CreateSnmpData(c0.ToBytes(), false);
             Assert.Equal(r0, c0);
             
             Counter32 c5 = new Counter32(uint.MaxValue);
-            Counter32 r5 = (Counter32)DataFactory.CreateSnmpData(c5.ToBytes());
+            Counter32 r5 = (Counter32)DataFactory.CreateSnmpData(c5.ToBytes(), false);
             Assert.Equal(r5, c5);
             
             Counter32 c4 = new Counter32(30000000);
-            Counter32 r4 = (Counter32)DataFactory.CreateSnmpData(c4.ToBytes());
+            Counter32 r4 = (Counter32)DataFactory.CreateSnmpData(c4.ToBytes(), false);
             Assert.Equal(r4, c4);
             
             Counter32 c3 = new Counter32(70000);
-            Counter32 r3 = (Counter32)DataFactory.CreateSnmpData(c3.ToBytes());
+            Counter32 r3 = (Counter32)DataFactory.CreateSnmpData(c3.ToBytes(), false);
             Assert.Equal(r3, c3);
             
             Counter32 c1 = new Counter32(13);
-            Counter32 r1 = (Counter32)DataFactory.CreateSnmpData(c1.ToBytes());
+            Counter32 r1 = (Counter32)DataFactory.CreateSnmpData(c1.ToBytes(), false);
             Assert.Equal(r1, c1);
             
             Counter32 c2 = new Counter32(300);
-            Counter32 r2 = (Counter32)DataFactory.CreateSnmpData(c2.ToBytes());
+            Counter32 r2 = (Counter32)DataFactory.CreateSnmpData(c2.ToBytes(), false);
             Assert.Equal(r2, c2);
             
             Counter32 c255 = new Counter32(255);

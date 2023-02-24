@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
   <PropertyGroup Label="Configuration">
-    <RootNamespace>Lextm.SharpSnmpLib</RootNamespace>
-    <SignAssembly>True</SignAssembly>
+    <RootNamespace>CeeSharp.SnmpLib</RootNamespace>
     <AssemblyOriginatorKeyFile>sharpsnmplib.tests.snk</AssemblyOriginatorKeyFile>
     <AssemblyName>SharpSnmpLib.Tests.NetStandard</AssemblyName>
+    <TargetFramework>net7.0</TargetFramework>
+    <OutputType>Library</OutputType>
   </PropertyGroup>
   <PropertyGroup>
     <OutputType Condition="'$(TargetFramework)'!='net471'">Exe</OutputType>
-    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' AND '$(MSBuildAssemblyVersion)' == '17.0' ">net6.0;netcoreapp3.1;net471</TargetFrameworks>
     <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' AND '$(MSBuildAssemblyVersion)' == '16.0' ">netcoreapp3.1;net471</TargetFrameworks>
     <TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' AND '$(MSBuildAssemblyVersion)' == '17.0'">net6.0;netcoreapp3.1</TargetFrameworks>
     <TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' AND '$(MSBuildAssemblyVersion)' == '16.0'">netcoreapp3.1</TargetFrameworks>
@@ -41,7 +41,7 @@
     <PackageReference Include="System.Net.Sockets" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\SharpSnmpLib\SharpSnmpLib.csproj" />
+    <ProjectReference Include="..\..\CeeSharpSnmpLib\CeeSharpSnmpLib.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />

@@ -8,11 +8,11 @@
  */
 
 using System.Collections.Generic;
-using Lextm.SharpSnmpLib.Messaging;
-using Lextm.SharpSnmpLib.Security;
+using CeeSharp.SnmpLib.Messaging;
+using CeeSharp.SnmpLib.Security;
 using Xunit;
 
-namespace Lextm.SharpSnmpLib.Unit.Messaging
+namespace CeeSharp.SnmpLib.Unit.Messaging
 {
     public class ResponseMessageTestFixture
     {
@@ -41,7 +41,7 @@ namespace Lextm.SharpSnmpLib.Unit.Messaging
                 null);
             var registry = new UserRegistry();
             registry.Add(new OctetString("lextm"), DefaultPrivacyProvider.DefaultPair);
-            var messages = MessageFactory.ParseMessages(response.ToBytes(), registry);
+            var messages = MessageFactory.ParseMessages(response.ToBytes(), registry, false);
             Assert.Equal(1, messages.Count);
         }
     }

@@ -13,7 +13,7 @@ using System.Net;
 using Xunit;
 
 #pragma warning disable 1591, 0618, 1718
-namespace Lextm.SharpSnmpLib.Unit
+namespace CeeSharp.SnmpLib.Unit
 {
     public class IPTestFixture
     {

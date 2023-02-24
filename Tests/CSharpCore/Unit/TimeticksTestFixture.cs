@@ -11,7 +11,7 @@ using System;
 using Xunit;
 
 #pragma warning disable 1591, 0618, 1718
-namespace Lextm.SharpSnmpLib.Unit
+namespace CeeSharp.SnmpLib.Unit
 {
     public class TimeticksTestFixture
     {
@@ -50,7 +50,7 @@ namespace Lextm.SharpSnmpLib.Unit
         public void TestToBytes()
         {
             TimeTicks time = new TimeTicks(16352);
-            ISnmpData data = DataFactory.CreateSnmpData(time.ToBytes());
+            ISnmpData data = DataFactory.CreateSnmpData(time.ToBytes(), false);
             Assert.Equal(SnmpType.TimeTicks, data.TypeCode);
             Assert.Equal(16352U, ((TimeTicks)data).ToUInt32());
             

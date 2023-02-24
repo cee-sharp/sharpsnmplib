@@ -10,10 +10,10 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Lextm.SharpSnmpLib.Security;
+using CeeSharp.SnmpLib.Security;
 using Xunit;
 
-namespace Lextm.SharpSnmpLib.Unit.Security
+namespace CeeSharp.SnmpLib.Unit.Security
 {
     public class SaltGeneratorTestFixture
     {

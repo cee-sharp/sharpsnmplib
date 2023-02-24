@@ -9,9 +9,10 @@
 
 using System;
 using System.IO;
+using Lextm.SharpSnmpLib.Errors;
 using Xunit;
 
-namespace Lextm.SharpSnmpLib.Unit
+namespace CeeSharp.SnmpLib.Unit
 {
     /// <summary>
     /// Description of TestInteger32.
@@ -50,7 +51,7 @@ namespace Lextm.SharpSnmpLib.Unit
             const int i = -2147418240;
             Integer32 data = new Integer32(i);
             byte[] bytes = data.ToBytes();
-            Integer32 other = (Integer32)DataFactory.CreateSnmpData(bytes);
+            Integer32 other = (Integer32)DataFactory.CreateSnmpData(bytes, false);
             Assert.Equal(i, other.ToInt32());
         }
         
@@ -62,7 +63,7 @@ namespace Lextm.SharpSnmpLib.Unit
             Integer32 data = new Integer32(i);
             byte[] bytes = data.ToBytes();
             Assert.Equal(6, bytes.Length);
-            var exception = Assert.Throws<SnmpException>(() => DataFactory.CreateSnmpData(new byte[] { 0x02, 0x05, 0xFF, 0xF1, 0xDE, 0xD9, 0x26 }));
+            var exception = Assert.Throws<SnmpException>(() => DataFactory.CreateSnmpData(new byte[] { 0x02, 0x05, 0xFF, 0xF1, 0xDE, 0xD9, 0x26 }, false));
             Assert.Contains("Truncation error for 32-bit integer coding.", exception.InnerException.Message);
         }
         
@@ -116,7 +117,7 @@ namespace Lextm.SharpSnmpLib.Unit
         {
             // bug 7217 https://sharpsnmplib.codeplex.com/workitem/7217
             Integer32 i = new Integer32(-250);
-            var result = DataFactory.CreateSnmpData(i.ToBytes());
+            var result = DataFactory.CreateSnmpData(i.ToBytes(), false);
             Assert.Equal(SnmpType.Integer32, result.TypeCode);
             Assert.Equal(-250, ((Integer32)result).ToInt32());
         }

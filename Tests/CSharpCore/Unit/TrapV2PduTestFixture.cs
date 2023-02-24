@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using Xunit;
 
-namespace Lextm.SharpSnmpLib.Unit
+namespace CeeSharp.SnmpLib.Unit
 {
     public class TrapV2PduTestFixture
     {
         [Fact]
         public void TestException()
         {
-            Assert.Throws<ArgumentNullException>(() => new TrapV2Pdu(null, null));
-            Assert.Throws<ArgumentNullException>(() => new TrapV2Pdu(new Tuple<int, byte[]>(0, new byte[] { 0 }), null));
+            Assert.Throws<ArgumentNullException>(() => new TrapV2Pdu(null, null, false));
+            Assert.Throws<ArgumentNullException>(() => new TrapV2Pdu(new Tuple<int, byte[]>(0, new byte[] { 0 }), null, false));
             Assert.Throws<ArgumentNullException>(() => new TrapV2Pdu(0, null, 0, null));
             Assert.Throws<ArgumentNullException>(() => new TrapV2Pdu(0, new ObjectIdentifier("1.3.6"), 0, null));            
             var pdu = new TrapV2Pdu(0, new ObjectIdentifier("1.3"), 0, new List<Variable>());

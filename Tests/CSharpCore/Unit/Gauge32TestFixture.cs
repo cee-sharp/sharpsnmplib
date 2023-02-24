@@ -12,7 +12,7 @@ using System.IO;
 using Xunit;
 
 #pragma warning disable 1591, 0618, 1718
-namespace Lextm.SharpSnmpLib.Unit
+namespace CeeSharp.SnmpLib.Unit
 {
     public class Gauge32TestFixture
     {
@@ -75,27 +75,27 @@ namespace Lextm.SharpSnmpLib.Unit
         public void TestToBytes()
         {
             Gauge32 c0 = new Gauge32(0);
-            Gauge32 r0 = (Gauge32)DataFactory.CreateSnmpData(c0.ToBytes());
+            Gauge32 r0 = (Gauge32)DataFactory.CreateSnmpData(c0.ToBytes(), false);
             Assert.Equal(r0, c0);
             
             Gauge32 c5 = new Gauge32(uint.MaxValue);
-            Gauge32 r5 = (Gauge32)DataFactory.CreateSnmpData(c5.ToBytes());
+            Gauge32 r5 = (Gauge32)DataFactory.CreateSnmpData(c5.ToBytes(), false);
             Assert.Equal(r5, c5);
             
             Gauge32 c4 = new Gauge32(30000000);
-            Gauge32 r4 = (Gauge32)DataFactory.CreateSnmpData(c4.ToBytes());
+            Gauge32 r4 = (Gauge32)DataFactory.CreateSnmpData(c4.ToBytes(), false);
             Assert.Equal(r4, c4);
             
             Gauge32 c3 = new Gauge32(70000);
-            Gauge32 r3 = (Gauge32)DataFactory.CreateSnmpData(c3.ToBytes());
+            Gauge32 r3 = (Gauge32)DataFactory.CreateSnmpData(c3.ToBytes(), false);
             Assert.Equal(r3, c3);
             
             Gauge32 c1 = new Gauge32(13);
-            Gauge32 r1 = (Gauge32)DataFactory.CreateSnmpData(c1.ToBytes());
+            Gauge32 r1 = (Gauge32)DataFactory.CreateSnmpData(c1.ToBytes(), false);
             Assert.Equal(r1, c1);
             
             Gauge32 c2 = new Gauge32(300);
-            Gauge32 r2 = (Gauge32)DataFactory.CreateSnmpData(c2.ToBytes());
+            Gauge32 r2 = (Gauge32)DataFactory.CreateSnmpData(c2.ToBytes(), false);
             Assert.Equal(r2, c2);
             
             Assert.Equal(new byte[] {0x42, 0x01, 0x03}, new Gauge32(3).ToBytes());

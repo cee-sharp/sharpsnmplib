@@ -8,10 +8,10 @@
  */
 
 using System;
-using Lextm.SharpSnmpLib.Security;
+using CeeSharp.SnmpLib.Security;
 using Xunit;
 
-namespace Lextm.SharpSnmpLib.Unit.Security
+namespace CeeSharp.SnmpLib.Unit.Security
 {
     public class UserRegistryTestFixture
     {

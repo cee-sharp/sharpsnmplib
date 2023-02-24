@@ -9,11 +9,11 @@
 
 using System;
 using System.Text;
-using Lextm.SharpSnmpLib.Security;
+using CeeSharp.SnmpLib.Security;
 using Xunit;
 
 #pragma warning disable CS0618 // Type or member is obsolete
-namespace Lextm.SharpSnmpLib.Unit.Security
+namespace CeeSharp.SnmpLib.Unit.Security
 {
     public class MD5AuthenticationProviderTestFixture
     {

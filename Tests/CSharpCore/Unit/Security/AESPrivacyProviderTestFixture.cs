@@ -8,12 +8,12 @@
  */
 
 #pragma warning disable CS0618 // Type or member is obsolete
-namespace Lextm.SharpSnmpLib.Unit.Security
+namespace CeeSharp.SnmpLib.Unit.Security
 {
     using System;
     using System.Collections.Generic;
     using Xunit;
-    using Lextm.SharpSnmpLib.Security;
+    using CeeSharp.SnmpLib.Security;
 
     public class AESPrivacyProviderTestFixture
     {
@@ -59,11 +59,6 @@ namespace Lextm.SharpSnmpLib.Unit.Security
         [Fact]
         public void TestEncrypt()
         {
-            if (!AESPrivacyProviderBase.IsSupported)
-            {
-                return;
-            }
-
             byte[] decrypted =
                 ByteTool.Convert(
                     "30  2D  04 0D 80 00 1F 88 80  E9 63 00 00  D6 1F F4 49 04 00 A0 1A 02 02 3A 25  02 01 00 02  01 00 30 0E  30 0C 06 08 2B 06 01 02  01 01 03 00  05 00 01");
@@ -88,15 +83,9 @@ namespace Lextm.SharpSnmpLib.Unit.Security
             OctetString engineId = new OctetString(ByteTool.Convert("80 00 1F 88 80  E9 63 00 00  D6 1F F4 49"));
 
             IPrivacyProvider priv;
-            if (AESPrivacyProviderBase.IsSupported)
-            {
-                priv = new AESPrivacyProvider(new OctetString("passtest"),
-                    new MD5AuthenticationProvider(new OctetString("testpass")));
-            }
-            else
-            {
-                return;
-            }
+
+            priv = new AESPrivacyProvider(new OctetString("passtest"),
+                new MD5AuthenticationProvider(new OctetString("testpass")));
 
             Scope scope = new Scope(engineId, OctetString.Empty,
                 new GetRequestPdu(0x3A25,

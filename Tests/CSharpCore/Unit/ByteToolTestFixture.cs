@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.IO;
 using Xunit;
 
-namespace Lextm.SharpSnmpLib.Unit
+namespace CeeSharp.SnmpLib.Unit
 {
     public class ByteToolTestFixture
     {

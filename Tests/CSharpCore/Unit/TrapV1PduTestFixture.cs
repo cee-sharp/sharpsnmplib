@@ -10,19 +10,19 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Lextm.SharpSnmpLib.Messaging;
-using Lextm.SharpSnmpLib.Security;
+using CeeSharp.SnmpLib.Messaging;
+using CeeSharp.SnmpLib.Security;
 using Xunit;
 
-namespace Lextm.SharpSnmpLib.Unit
+namespace CeeSharp.SnmpLib.Unit
 {
     public class TrapV1PduTestFixture
     {
         [Fact]
         public void TestException()
         {
-            Assert.Throws<ArgumentNullException>(() => new TrapV1Pdu(null, null));
-            Assert.Throws<ArgumentNullException>(() => new TrapV1Pdu(new Tuple<int, byte[]>(0, new byte[] { 0 }),null));
+            Assert.Throws<ArgumentNullException>(() => new TrapV1Pdu(null, null, false));
+            Assert.Throws<ArgumentNullException>(() => new TrapV1Pdu(new Tuple<int, byte[]>(0, new byte[] { 0 }),null, false));
             Assert.Throws<ArgumentNullException>(() => new TrapV1Pdu((ObjectIdentifier)null, null, null, null, null, null));
             Assert.Throws<ArgumentNullException>(() => new TrapV1Pdu(new ObjectIdentifier(new uint[] {1, 3, 6, 1, 4, 1, 2162, 1000, 2}), null, null, null, null, null));
             Assert.Throws<ArgumentNullException>(() => new TrapV1Pdu(new ObjectIdentifier(new uint[] {1, 3, 6, 1, 4, 1, 2162, 1000, 2}),
@@ -73,7 +73,7 @@ namespace Lextm.SharpSnmpLib.Unit
                                           new TimeTicks(16352),
                                           vList);
             byte[] bytes = TrapV1Message.PackMessage(VersionCode.V1, new OctetString("public"), pdu).ToBytes();
-            TrapV1Message message = (TrapV1Message)MessageFactory.ParseMessages(bytes, new UserRegistry())[0];
+            TrapV1Message message = (TrapV1Message)MessageFactory.ParseMessages(bytes, new UserRegistry(), false)[0];
             Assert.Equal("127.0.0.1", message.AgentAddress.ToString());
             Assert.Equal(GenericCode.EnterpriseSpecific, message.Generic);
             Assert.Equal(12, message.Specific);
@@ -99,7 +99,7 @@ namespace Lextm.SharpSnmpLib.Unit
                                           new TimeTicks(16352),
                                           vList);
             byte[] bytes = TrapV1Message.PackMessage(VersionCode.V1, new OctetString("public"), pdu).ToBytes();
-            TrapV1Message message = (TrapV1Message)MessageFactory.ParseMessages(bytes, new UserRegistry())[0];
+            TrapV1Message message = (TrapV1Message)MessageFactory.ParseMessages(bytes, new UserRegistry(), false)[0];
             Assert.Equal("127.0.0.1", message.AgentAddress.ToString());
             Assert.Equal(GenericCode.EnterpriseSpecific, message.Generic);
             Assert.Equal(12, message.Specific);
